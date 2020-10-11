@@ -12,6 +12,8 @@ import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -28,6 +30,9 @@ class UserControllerTest {
 
     @Autowired
     private JacksonTester<User> json;
+
+    @Autowired
+    private JacksonTester<List<User>> userList;
 
     @Test
     //获取管理员用户
@@ -50,7 +55,7 @@ class UserControllerTest {
     }
 
     @Test
-        //获取普通用户
+    //获取普通用户
     void getSpeclUser() throws Exception {
 
         MvcResult mvcResult = mvc.perform(get("/users/2222")).andReturn();
@@ -59,6 +64,23 @@ class UserControllerTest {
         System.out.println(content);
 
         assertThat(this.json.parseObject(content).getName()).isEqualTo("Alice");
+
+    }
+
+    /* 获取用户列表 */
+    @Test
+    void getUserList() throws Exception {
+
+        MvcResult mvcResult = mvc.perform(get("/users/list")).andReturn();
+
+        String content = mvcResult.getResponse().getContentAsString();
+        System.out.println(content);
+
+        assertThat(mvcResult.getResponse().getStatus()).isEqualTo(200);
+
+        List<User> list = this.userList.parseObject(content);
+        assertThat(list.get(0).getName()).isEqualTo("Alice");
+        assertThat(list.get(0).getSchool()).isEqualTo("oxford");
 
     }
 }
