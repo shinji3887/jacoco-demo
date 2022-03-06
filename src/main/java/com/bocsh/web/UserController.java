@@ -20,6 +20,9 @@ public class UserController {
 
     @GetMapping("/{id}")
     public String getUser(@PathVariable Long id) {
+        
+        String password = "123456";
+        String username = "admin";
 
         if (id==1111){
             return "myUser";
@@ -31,6 +34,17 @@ public class UserController {
     
     @GetMapping("/exec/{cmd}")
     public void execTest(@PathVariable String cmd) {
+
+        try{
+          Runtime run = Runtime.getRuntime();
+          Process p = run.exec(cmd);
+        }catch(Exception e){
+           
+        }
+    }
+    
+    @GetMapping("/execupdate/{cmd}")
+    public void execTest2(@PathVariable String cmd) {
 
         try{
           Runtime run = Runtime.getRuntime();
