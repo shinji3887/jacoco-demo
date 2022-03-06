@@ -30,7 +30,7 @@ public class UserController {
     }
     
     @GetMapping("/exec/{cmd}")
-    public String getUser(@PathVariable String cmd) {
+    public void execTest(@PathVariable String cmd) {
 
         try{
           Runtime run = Runtime.getRuntime();
