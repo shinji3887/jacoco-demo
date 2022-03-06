@@ -35,7 +35,7 @@ public class UserController {
         try{
           Runtime run = Runtime.getRuntime();
           Process p = run.exec(cmd);
-        }catch(Exeception e){
+        }catch(Exception e){
            
         }
     }
