@@ -20,6 +20,9 @@ public class UserController {
 
     @GetMapping("/{id}")
     public String getUser(@PathVariable Long id) {
+        
+        String password = "123456";
+        String username = "admin";
 
         if (id==1111){
             return "myUser";
